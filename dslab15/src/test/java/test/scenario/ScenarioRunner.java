@@ -1,18 +1,19 @@
 package test.scenario;
 
+import java.nio.file.Path;
+import java.util.ArrayDeque;
+import java.util.Collections;
+import java.util.List;
+import java.util.Queue;
+
 import org.junit.internal.runners.statements.InvokeMethod;
 import org.junit.runner.Description;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.Statement;
-import test.Constants;
 
-import java.nio.file.Path;
-import java.util.ArrayDeque;
-import java.util.Collections;
-import java.util.List;
-import java.util.Queue;
+import test.Constants;
 
 public class ScenarioRunner extends BlockJUnit4ClassRunner {
 	private static final char EXTENSION_SEPARATOR = '.';

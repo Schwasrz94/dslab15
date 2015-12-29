@@ -1,8 +1,8 @@
 package test.scenario;
 
-import org.junit.runner.Description;
-
 import java.nio.file.Path;
+
+import org.junit.runner.Description;
 
 /**
  * Represents a single scenario step.

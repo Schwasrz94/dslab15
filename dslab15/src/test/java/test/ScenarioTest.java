@@ -1,5 +1,22 @@
 package test;
 
+import static org.junit.Assert.assertThat;
+import static test.scenario.ScenarioUtils.listSteps;
+import static util.TestUtils.contains;
+import static util.TestUtils.join;
+import static util.TestUtils.repeat;
+
+import java.io.PrintStream;
+import java.lang.reflect.Method;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
 import org.junit.Before;
@@ -9,6 +26,7 @@ import org.springframework.expression.EvaluationException;
 import org.springframework.expression.spel.SpelParserConfiguration;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
+
 import test.scenario.ScenarioRunner;
 import test.scenario.ScenarioUtils;
 import test.scenario.Step;
@@ -16,17 +34,6 @@ import test.util.Flag;
 import test.util.PatternMatcher;
 import util.TestInputStream;
 import util.TestOutputStream;
-
-import java.io.PrintStream;
-import java.lang.reflect.Method;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.*;
-
-import static org.junit.Assert.assertThat;
-import static test.scenario.ScenarioUtils.listSteps;
-import static util.TestUtils.*;
 
 /**
  * Executes the test scenarios.

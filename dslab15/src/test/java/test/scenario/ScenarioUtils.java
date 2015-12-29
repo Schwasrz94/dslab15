@@ -1,13 +1,13 @@
 package test.scenario;
 
+import static java.util.Arrays.sort;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.Arrays.sort;
 
 /**
  * Provides utility methods for test scenarios.
