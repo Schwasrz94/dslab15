@@ -39,6 +39,7 @@ public class TcpChannel implements Channel {
 
 	@Override
 	public void bind(InetSocketAddress addr) throws IOException, ClosedChannelException {
+		System.out.println("ADDRESS: "+addr.toString());
 		if(!open) throw new ClosedChannelException();
 		socket = new Socket(addr.getAddress(),addr.getPort());
 		reader = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));

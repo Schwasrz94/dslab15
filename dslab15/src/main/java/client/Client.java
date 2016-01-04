@@ -189,6 +189,7 @@ public class Client implements IClientCli, Runnable {
 			
 			String[] parts = response.split(":");
 			System.out.println(parts[0]+" "+Integer.parseInt(parts[1]));
+			System.out.println(parts[0].length());
 			
 			Channel privateTcp = new TcpChannel();
 			privateTcp.bind(new InetSocketAddress(InetAddress.getByName(parts[0]),Integer.parseInt(parts[1])));	
@@ -234,13 +235,14 @@ public class Client implements IClientCli, Runnable {
 		while((response = getSresp()) == null);
 		sresp = null;
 		
-		if(response.equals("Successfully registered address for "+user+".")){
+		
+			System.out.println("starting private connection");
 				if (privateServerSocket != null && !privateServerSocket.isClosed())
 					privateServerSocket.close();
 				privateServerSocket = new ServerSocket(Integer.parseInt(parts[1]));
 				PrivateServerListener psListener = new PrivateServerListener(privateServerSocket,shell,hmacKey);
 				pool.execute(psListener);
-		}
+
 		return response;
 	}
 	
