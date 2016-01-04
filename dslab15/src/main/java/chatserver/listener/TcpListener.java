@@ -11,6 +11,7 @@ import java.util.concurrent.ExecutorService;
 import channel.Channel;
 import channel.TcpChannel;
 import chatserver.persistence.User;
+import nameserver.INameserver;
 
 /**
  * Listens for any incoming Client connections. Whenever a Client connections to the CloudController, the ClientListener spawns a new
@@ -21,13 +22,15 @@ public class TcpListener implements Runnable {
 	private ServerSocket serverSocket;
 	private final ExecutorService pool;
 	private Map<String,User> userMap;
-	private List<Channel> tcpChannels; 
+	private List<Channel> tcpChannels;
+	private INameserver root;
 
-	public TcpListener(ServerSocket serverSocket, Map<String,User> userMap, ExecutorService pool) {
+	public TcpListener(ServerSocket serverSocket, Map<String,User> userMap, ExecutorService pool,INameserver root) {
 		this.serverSocket = serverSocket;
 		this.userMap = userMap;
 		this.pool = pool;
 		this.tcpChannels = new ArrayList<Channel>();
+		this.root=root;
 	}
 
 	public void run() {
@@ -36,7 +39,7 @@ public class TcpListener implements Runnable {
 				
 				Channel tcp = new TcpChannel(serverSocket.accept());
 				tcpChannels.add(tcp);
-				ClientThread client = new ClientThread(tcp, userMap, this);
+				ClientThread client = new ClientThread(tcp, userMap, this,root);
 				pool.execute(client);
 				
 			}		

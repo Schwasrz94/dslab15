@@ -2,10 +2,17 @@ package chatserver.listener;
 
 import java.io.IOException;
 import java.nio.channels.ClosedChannelException;
+import java.rmi.RemoteException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import channel.Channel;
 import chatserver.persistence.User;
+import nameserver.INameserver;
+import nameserver.INameserverForChatserver;
+import nameserver.exceptions.AlreadyRegisteredException;
+import nameserver.exceptions.InvalidDomainException;
 
 public class ClientThread implements Runnable{
 
@@ -13,12 +20,14 @@ public class ClientThread implements Runnable{
 	private String currentUser;
 	private Map<String,User> userMap;
 	private TcpListener listener;
+	private INameserver root;
 	
-	public ClientThread(Channel tcp, Map<String,User> userMap, TcpListener listener) {
+	public ClientThread(Channel tcp, Map<String,User> userMap, TcpListener listener, INameserver root) {
 		this.tcp = tcp;
 		this.userMap = userMap;
 		this.currentUser = null;
 		this.listener = listener;
+		this.root=root;
 	}
 
 	@Override
@@ -40,6 +49,7 @@ public class ClientThread implements Runnable{
 					send(request);
 					break;
 				case "!register":
+					tcp.write("");
 					tcp.write(register(parts));
 					break;
 				case "!lookup":
@@ -89,7 +99,9 @@ public class ClientThread implements Runnable{
 			}
 		}
 	}
-	
+
+	// Old methods
+	/*
 	public String register(String[] arguments){
 		if(currentUser == null ) return "Not logged in.";
 		if(arguments.length < 2) return "Too few arguments.";
@@ -98,7 +110,9 @@ public class ClientThread implements Runnable{
 		}
 		return "Successfully registered address for "+currentUser+".";
 	}
-	
+
+
+
 	public String lookup(String[] arguments){
 		if(currentUser == null ) return "Not logged in.";
 		if(arguments.length < 2) return "Too few arguments.";
@@ -106,5 +120,66 @@ public class ClientThread implements Runnable{
 		if(!userMap.get(arguments[1]).isOnline()) return "User "+arguments[1]+" not online";
 		if(userMap.get(arguments[1]).getAddr() == null) return "User "+arguments[1]+" not registered";
 		return userMap.get(arguments[1]).getAddr();
+	}*/
+
+	public String register(String[] arguments){
+		if(currentUser == null ) return "Not logged in.";
+		if(arguments.length < 2) return "Too few arguments.";
+		/*synchronized(userMap) {
+			userMap.get(currentUser).setAddr(arguments[1]);
+		}*/
+		try {
+			root.registerUser(currentUser,arguments[1]);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (AlreadyRegisteredException e) {
+			e.printStackTrace();
+			return "user already registered";
+		} catch (InvalidDomainException e) {
+			e.printStackTrace();
+			return "invalid domain";
+		}
+		return "Successfully registered address for "+currentUser+".";
 	}
+
+	public String lookup(String[] arguments){
+		if(currentUser == null ) return "Not logged in.";
+		if(arguments.length < 2) return "Too few arguments.";
+		/*if(!userMap.containsKey(arguments[1])) return "User "+arguments[1]+" not found";
+		if(!userMap.get(arguments[1]).isOnline()) return "User "+arguments[1]+" not online";
+		if(userMap.get(arguments[1]).getAddr() == null) return "User "+arguments[1]+" not registered";*/
+
+
+
+		return reverseLookup(arguments[1]);
+	}
+	private String reverseLookup(String currentUser) {
+		String result=null;
+		List<String> uSplit	= Arrays.asList(currentUser.split("\\."));
+		INameserverForChatserver nameserver = root;
+		for(int i = uSplit.size()-1;i>0;i--){
+			if (nameserver==null) {
+				return "User not found! Unknown Subdomain!";
+			}
+			try {
+				nameserver=nameserver.getNameserver(uSplit.get(i));
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		}
+		if (nameserver==null) {
+			return "User not found! Unknown Subdomain!";
+		} else {
+			try {
+				result = nameserver.lookup(uSplit.get(0));
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		}
+		if (result==null) {
+			return "User "+currentUser+" not registered";
+		}
+		return result;
+	}
+
 }

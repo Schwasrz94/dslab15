@@ -6,6 +6,10 @@ import java.io.PrintStream;
 import java.net.DatagramSocket;
 import java.net.ServerSocket;
 import java.net.SocketException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -15,6 +19,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import nameserver.INameserver;
 import util.Config;
 import chatserver.listener.TcpListener;
 import chatserver.listener.UdpListener;
@@ -37,6 +42,12 @@ public class Chatserver implements IChatserverCli, Runnable {
 	private ServerSocket serverSocket;
 	private DatagramSocket datagramSocket;
 	private final ExecutorService pool;
+
+	private String rootID;
+	private int rootPort;
+	private String rootHostname;
+	private Registry registry;
+	private INameserver root;
 	
 	/**
 	 * @param componentName
@@ -54,7 +65,24 @@ public class Chatserver implements IChatserverCli, Runnable {
 		this.userRequestStream = userRequestStream;
 		this.userResponseStream = userResponseStream;
 		this.userMap = new HashMap<String,User>();
-		
+
+		this.rootID = config.getString("root_id");
+		this.rootPort = config.getInt("registry.port");
+		this.rootHostname = config.getString("registry.host");
+		try {
+			registry = LocateRegistry.getRegistry(rootHostname, rootPort);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			root = (INameserver) registry.lookup(rootID);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+
 		Config userConfig = new Config("user");
 		Set<String> userKeys = userConfig.listKeys();
 		for (String key : userKeys) {
@@ -81,7 +109,7 @@ public class Chatserver implements IChatserverCli, Runnable {
 	@Override
 	public void run() {
 		
-		TcpListener tcp = new TcpListener(serverSocket,userMap,pool);
+		TcpListener tcp = new TcpListener(serverSocket,userMap,pool,root);
 		pool.execute(tcp);
 		
 		UdpListener udp = new UdpListener(datagramSocket,userMap);
