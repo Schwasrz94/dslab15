@@ -17,7 +17,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import channel.*;
+
 import org.bouncycastle.util.encoders.Base64;
+
 import util.AesUtil;
 import util.Config;
 import util.Keys;
@@ -68,12 +70,6 @@ public class Client implements IClientCli, Runnable {
 		this.user = null;
 		this.serverListener = null;
 		this.sresp = null;
-		this.tcp = new Base64Channel(new TcpChannel());
-		try {
-			tcp.bind(new InetSocketAddress(config.getString("chatserver.host"), config.getInt("chatserver.tcp.port")));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
 		try {
 			this.hmacKey = Keys.readSecretKey(new File(config.getString("hmac.key")));
@@ -109,16 +105,20 @@ public class Client implements IClientCli, Runnable {
 		pool.execute(shell);
 		System.out.println(getClass().getName() + " up and waiting for commands!");
 	}
-
+	
+/*
 	@Override
 	@Command
 	public String login(String username, String password) throws IOException {
 		if(loggedIn) return "You are already logged in";
-
+		
+		tcp = new TcpChannel();
+		tcp.bind(new InetSocketAddress(config.getString("chatserver.host"), config.getInt("chatserver.tcp.port")));	
+		
 		serverListener = new ServerListener(tcp,shell,this);
-		tcp.write(new String("!login-" + username + "-" + password).getBytes());
-
-		String response = new String(tcp.read(),"UTF-8");
+		tcp.write("!login-"+username+"-"+password);
+		
+		String response = tcp.read();
 		if (response.equals("Successfully logged in.")) {
 			loggedIn = true;
 			user = username;
@@ -127,7 +127,8 @@ public class Client implements IClientCli, Runnable {
 		else tcp.close();
 		return response;
 	}
-
+*/
+	
 	@Override
 	@Command
 	public String logout() throws IOException {
@@ -292,11 +293,19 @@ public class Client implements IClientCli, Runnable {
 	@Command
 	public String authenticate(String username) throws IOException {
 		if(!loggedIn){
+			
+			tcp = new Base64Channel(new TcpChannel());
+			try {
+				tcp.bind(new InetSocketAddress(config.getString("chatserver.host"), config.getInt("chatserver.tcp.port")));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 			PrivateKey privateKey;
 			try {
 				privateKey = Keys.readPrivatePEM(new File("keys/client/" + username + ".pem"));
 			} catch (Exception e) {
-				return "User doesn´t exist.";
+				return "User doesnï¿½t exist.";
 			}
 			PublicKey serverPublicKey = Keys.readPublicPEM(new File("keys/client/chatserver.pub.pem"));
 

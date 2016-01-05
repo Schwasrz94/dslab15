@@ -73,9 +73,6 @@ public class ClientThread implements Runnable{
 				}
 				String[] parts = req.split("-");
 				switch (parts[0]){
-				case "!login":
-					tcp.write(login(parts).getBytes());
-					break;
 				case "!logout":
 					tcp.write(logout().getBytes());
 					tcp.close();
@@ -169,6 +166,8 @@ public class ClientThread implements Runnable{
 			listener.addChanneltoTcpChannels(tcp);
 		}
 	}
+	
+	/*
 	public String login(String[] arguments){
 		if(arguments.length < 3) return "Too few arguments.";
 		if(currentUser != null) return "Already logged in.";
@@ -181,6 +180,7 @@ public class ClientThread implements Runnable{
 		}
 		return "Wrong username or password.";
 	}
+	*/
 	
 	public String logout(){
 		if(currentUser == null) return "Not logged in.";

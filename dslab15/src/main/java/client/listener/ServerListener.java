@@ -44,6 +44,8 @@ public class ServerListener implements Runnable {
 
 					client.setSresp(message);
 					waitForResponse = false;
+					
+					if(message.equals("Successfully logged out.")) break;
 
 				} else shell.writeLine(message);
 			}
