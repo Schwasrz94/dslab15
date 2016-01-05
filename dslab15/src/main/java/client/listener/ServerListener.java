@@ -31,30 +31,30 @@ public class ServerListener implements Runnable {
 	public void run() {
 		String message;
 		try {
-			
-			while((message = tcp.read()) != null){
+
+			while(((message = new String(tcp.read(),"UTF-8")) != null)) {
 
 				if(message.startsWith("[message]")){
-					
+
 					message = message.replace("[message]", "");
 					lastMsg = message;
 					shell.writeLine(message);
-					
+
 				} else if (waitForResponse){
-					
+
 					client.setSresp(message);
 					waitForResponse = false;
-					
+
 				} else shell.writeLine(message);
 			}
-			
+
 		} catch(ClosedChannelException e){
 			//Stops Thread if tcpChannel gets closed	
 		} catch (SocketException e) {
 			//Stops Thread if tcpChannel gets closed	
 		} catch (IOException e) {
 			System.out.println(e.getClass().getSimpleName() + ": " + e.getMessage());
-		} 
+		}
 	}
 
 	public String getLastMsg() {

@@ -7,7 +7,7 @@ import java.nio.channels.ClosedChannelException;
 public class ChannelDecorator implements Channel{
 
 	public Channel channelToBeDecorated;
-	
+
 	public ChannelDecorator(Channel channelToBeDecorated) {
 		this.channelToBeDecorated = channelToBeDecorated;
 	}
@@ -23,12 +23,12 @@ public class ChannelDecorator implements Channel{
 	}
 
 	@Override
-	public String read() throws IOException, ClosedChannelException {
+	public byte[] read() throws IOException, ClosedChannelException {
 		return channelToBeDecorated.read();
 	}
 
 	@Override
-	public void write(String m) throws ClosedChannelException {
+	public void write(byte[] m) throws ClosedChannelException {
 		channelToBeDecorated.write(m);
 	}
 

@@ -8,11 +8,11 @@ import java.nio.channels.ClosedChannelException;
 public interface Channel extends Closeable{
 
 	public void bind(InetSocketAddress addr) throws IOException, ClosedChannelException;
-	
-	public String read() throws IOException, ClosedChannelException;
-	
-	public void write(String m) throws ClosedChannelException;
-	
+
+	public byte[] read() throws IOException, ClosedChannelException;
+
+	public void write(byte[] m) throws ClosedChannelException;
+
 	public boolean isOpen();
-	
+
 }

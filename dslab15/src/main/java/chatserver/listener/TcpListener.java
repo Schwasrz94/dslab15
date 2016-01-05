@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
+import channel.Base64Channel;
 import channel.Channel;
 import channel.TcpChannel;
 import chatserver.persistence.User;
@@ -37,8 +38,7 @@ public class TcpListener implements Runnable {
 		try {
 			while(true){
 				
-				Channel tcp = new TcpChannel(serverSocket.accept());
-				tcpChannels.add(tcp);
+				Channel tcp = new Base64Channel(new TcpChannel(serverSocket.accept()));
 				ClientThread client = new ClientThread(tcp, userMap, this,root);
 				pool.execute(client);
 				
@@ -62,4 +62,8 @@ public class TcpListener implements Runnable {
 	public List<Channel> getTcpChannels() {
 		return tcpChannels;
 	}
+	public synchronized void addChanneltoTcpChannels(Channel channel) {
+		tcpChannels.add(channel);
+	}
+
 }

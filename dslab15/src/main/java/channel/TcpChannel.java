@@ -1,9 +1,6 @@
 package channel;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.channels.ClosedChannelException;
@@ -47,15 +44,19 @@ public class TcpChannel implements Channel {
 	}
 
 	@Override
-	public String read() throws IOException, ClosedChannelException {
+	public byte[] read() throws IOException, ClosedChannelException {
 		if(!open) throw new ClosedChannelException();
-		return reader.readLine();
+		return reader.readLine().getBytes();
 	}
 
 	@Override
-	public void write(String m) throws ClosedChannelException {
+	public void write(byte[] m) throws ClosedChannelException {
 		if(!open) throw new ClosedChannelException();
-		writer.println(m);
+		try {
+			writer.println(new String(m,"UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		writer.flush();
 	}
 

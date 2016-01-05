@@ -24,21 +24,21 @@ public class PrivateServerListener implements Runnable{
 
 	public void run() {
 		try {
-			while(true){				
+			while(true){
 				Channel tcp = new TcpChannel(serverSocket.accept());
 				tcp = new HmacChannel(tcp,hmacKey);
-				String m = tcp.read();
+				String m = new String(tcp.read(),"UTF-8");
 				if(m.startsWith("!tampered")){
 					System.out.println("Tampered message: " + m.substring(10));
-					tcp.write(m);
+					tcp.write(m.getBytes());
 				}
 				else{
 					shell.writeLine(m);
-					tcp.write("!ack");
+					tcp.write("!ack".getBytes());
 				}
-			}		
+			}
 		} catch (SocketException e) {
-			
+
 		} catch (IOException e) {
 			System.out.println(e.getClass().getSimpleName() + ": " + e.getMessage());
 		}

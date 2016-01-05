@@ -10,6 +10,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.security.Security;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -60,6 +61,7 @@ public class Chatserver implements IChatserverCli, Runnable {
 	 *            the output stream to write the console output to
 	 */
 	public Chatserver(String componentName, Config config, InputStream userRequestStream, PrintStream userResponseStream) {
+		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
 		this.componentName = componentName;
 		this.config = config;
 		this.userRequestStream = userRequestStream;
