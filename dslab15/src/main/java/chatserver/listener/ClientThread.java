@@ -84,7 +84,7 @@ public class ClientThread implements Runnable{
 					send(new String(request,"UTF-8"));
 					break;
 				case "!register":
-					tcp.write("a".getBytes());
+					tcp.write(" ".getBytes());
 					tcp.write(register(parts).getBytes());
 					break;
 				case "!lookup":

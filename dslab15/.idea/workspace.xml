@@ -2,72 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc3be069-3c6c-4e9d-bb87-38e2096ff5e7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/channel/AESChannel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/util/AesUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/channel/Base64Channel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/util/RsaUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/nameserver/exceptions/AlreadyRegisteredException.class" afterPath="$PROJECT_DIR$/build/nameserver/exceptions/AlreadyRegisteredException.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/channel/Channel.class" afterPath="$PROJECT_DIR$/build/channel/Channel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/channel/ChannelDecorator.class" afterPath="$PROJECT_DIR$/build/channel/ChannelDecorator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/chatserver/Chatserver.class" afterPath="$PROJECT_DIR$/build/chatserver/Chatserver.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/client/Client.class" afterPath="$PROJECT_DIR$/build/client/Client.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/chatserver/listener/ClientThread.class" afterPath="$PROJECT_DIR$/build/chatserver/listener/ClientThread.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/cli/Command.class" afterPath="$PROJECT_DIR$/build/cli/Command.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test/ComponentFactory.class" afterPath="$PROJECT_DIR$/build/test/ComponentFactory.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/util/Config.class" afterPath="$PROJECT_DIR$/build/util/Config.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test/Constants.class" afterPath="$PROJECT_DIR$/build/test/Constants.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test/util/Flag.class" afterPath="$PROJECT_DIR$/build/test/util/Flag.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/channel/HmacChannel.class" afterPath="$PROJECT_DIR$/build/channel/HmacChannel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/chatserver/IChatserverCli.class" afterPath="$PROJECT_DIR$/build/chatserver/IChatserverCli.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/client/IClientCli.class" afterPath="$PROJECT_DIR$/build/client/IClientCli.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/nameserver/INameserver.class" afterPath="$PROJECT_DIR$/build/nameserver/INameserver.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/nameserver/INameserverCli.class" afterPath="$PROJECT_DIR$/build/nameserver/INameserverCli.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/nameserver/INameserverForChatserver.class" afterPath="$PROJECT_DIR$/build/nameserver/INameserverForChatserver.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/nameserver/exceptions/InvalidDomainException.class" afterPath="$PROJECT_DIR$/build/nameserver/exceptions/InvalidDomainException.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/util/Keys$PasswordReader.class" afterPath="$PROJECT_DIR$/build/util/Keys$PasswordReader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/util/Keys$StaticPasswordReader.class" afterPath="$PROJECT_DIR$/build/util/Keys$StaticPasswordReader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/util/Keys.class" afterPath="$PROJECT_DIR$/build/util/Keys.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/nameserver/Nameserver.class" afterPath="$PROJECT_DIR$/build/nameserver/Nameserver.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/nameserver/remoteObjects/NameserverRemote.class" afterPath="$PROJECT_DIR$/build/nameserver/remoteObjects/NameserverRemote.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/util/NullOutputStream.class" afterPath="$PROJECT_DIR$/build/util/NullOutputStream.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test/util/PatternMatcher.class" afterPath="$PROJECT_DIR$/build/test/util/PatternMatcher.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/client/listener/PrivateServerListener.class" afterPath="$PROJECT_DIR$/build/client/listener/PrivateServerListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test/scenario/ScenarioRunner$1.class" afterPath="$PROJECT_DIR$/build/test/scenario/ScenarioRunner$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test/scenario/ScenarioRunner.class" afterPath="$PROJECT_DIR$/build/test/scenario/ScenarioRunner.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test/ScenarioTest$CliComponent.class" afterPath="$PROJECT_DIR$/build/test/ScenarioTest$CliComponent.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test/ScenarioTest.class" afterPath="$PROJECT_DIR$/build/test/ScenarioTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test/scenario/ScenarioUtils$1.class" afterPath="$PROJECT_DIR$/build/test/scenario/ScenarioUtils$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test/scenario/ScenarioUtils$2.class" afterPath="$PROJECT_DIR$/build/test/scenario/ScenarioUtils$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test/scenario/ScenarioUtils.class" afterPath="$PROJECT_DIR$/build/test/scenario/ScenarioUtils.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/util/SecurityUtils.class" afterPath="$PROJECT_DIR$/build/util/SecurityUtils.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/client/listener/ServerListener.class" afterPath="$PROJECT_DIR$/build/client/listener/ServerListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/cli/Shell$1.class" afterPath="$PROJECT_DIR$/build/cli/Shell$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/cli/Shell$ShellCommandDefinition.class" afterPath="$PROJECT_DIR$/build/cli/Shell$ShellCommandDefinition.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/cli/Shell$ShellCommandInvocationHandler.class" afterPath="$PROJECT_DIR$/build/cli/Shell$ShellCommandInvocationHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/cli/Shell.class" afterPath="$PROJECT_DIR$/build/cli/Shell.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/test/scenario/Step.class" afterPath="$PROJECT_DIR$/build/test/scenario/Step.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/channel/TcpChannel.class" afterPath="$PROJECT_DIR$/build/channel/TcpChannel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/chatserver/listener/TcpListener.class" afterPath="$PROJECT_DIR$/build/chatserver/listener/TcpListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/util/TestInputStream.class" afterPath="$PROJECT_DIR$/build/util/TestInputStream.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/util/TestOutputStream.class" afterPath="$PROJECT_DIR$/build/util/TestOutputStream.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/util/TestUtils.class" afterPath="$PROJECT_DIR$/build/util/TestUtils.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/chatserver/listener/UdpListener.class" afterPath="$PROJECT_DIR$/build/chatserver/listener/UdpListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/chatserver/persistence/User.class" afterPath="$PROJECT_DIR$/build/chatserver/persistence/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/channel/Channel.java" afterPath="$PROJECT_DIR$/src/main/java/channel/Channel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/channel/ChannelDecorator.java" afterPath="$PROJECT_DIR$/src/main/java/channel/ChannelDecorator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/chatserver/Chatserver.java" afterPath="$PROJECT_DIR$/src/main/java/chatserver/Chatserver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/client/Client.java" afterPath="$PROJECT_DIR$/src/main/java/client/Client.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/ant.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/chatserver/listener/ClientThread.java" afterPath="$PROJECT_DIR$/src/main/java/chatserver/listener/ClientThread.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/channel/HmacChannel.java" afterPath="$PROJECT_DIR$/src/main/java/channel/HmacChannel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/client/listener/PrivateServerListener.java" afterPath="$PROJECT_DIR$/src/main/java/client/listener/PrivateServerListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/client/listener/ServerListener.java" afterPath="$PROJECT_DIR$/src/main/java/client/listener/ServerListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/TEST-test.ScenarioTest.txt" afterPath="$PROJECT_DIR$/reports/TEST-test.ScenarioTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/channel/TcpChannel.java" afterPath="$PROJECT_DIR$/src/main/java/channel/TcpChannel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/chatserver/listener/TcpListener.java" afterPath="$PROJECT_DIR$/src/main/java/chatserver/listener/TcpListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="dslab15.iws" />
@@ -93,7 +29,7 @@
       <file leaf-file-name="ClientThread.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/chatserver/listener/ClientThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5990566">
+            <state vertical-scroll-proportion="0.23820755">
               <caret line="86" column="32" selection-start-line="86" selection-start-column="32" selection-end-line="86" selection-end-column="32" />
               <folding />
             </state>
@@ -558,7 +494,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="client.Client" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="ss" />
+      <option name="PROGRAM_PARAMETERS" value="dd" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -736,6 +672,13 @@
       <option name="number" value="Default" />
       <updated>1451988815151</updated>
     </task>
+    <task id="LOCAL-00001" summary="stage2">
+      <created>1452000545336</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1452000545336</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -777,6 +720,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="stage2" />
+    <option name="LAST_COMMIT_MESSAGE" value="stage2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -983,7 +930,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/chatserver/listener/ClientThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5990566">
+        <state vertical-scroll-proportion="0.23820755">
           <caret line="86" column="32" selection-start-line="86" selection-start-column="32" selection-end-line="86" selection-end-column="32" />
           <folding />
         </state>
