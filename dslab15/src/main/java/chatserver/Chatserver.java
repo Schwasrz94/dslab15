@@ -73,16 +73,25 @@ public class Chatserver implements IChatserverCli, Runnable {
 		this.rootHostname = config.getString("registry.host");
 		try {
 			registry = LocateRegistry.getRegistry(rootHostname, rootPort);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-
-		try {
 			root = (INameserver) registry.lookup(rootID);
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("ERROR: RMI");
+			System.out.println(e.getMessage());
+			try {
+				exit();
+			} catch (IOException e1) {
+				// do nothing
+			}
 		} catch (NotBoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("ERROR: RMI");
+			System.out.println(e.getMessage());
+			try {
+				exit();
+			} catch (IOException e1) {
+				// do nothing
+			}
 		}
 
 		Config userConfig = new Config("user");

@@ -32,7 +32,7 @@ public class NameserverRemote implements INameserver,Remote{
 
     @Override
     public void registerNameserver(String domain, INameserver nameserver, INameserverForChatserver nameserverForChatserver) throws RemoteException, AlreadyRegisteredException, InvalidDomainException {
-        System.out.println("register called");
+        System.out.println("Request: registerNameserver");
         System.out.println("domain: "+domain);
         List<String> dSplit = Arrays.asList(domain.split("\\."));
         if(dSplit.size()==1){
@@ -62,6 +62,9 @@ public class NameserverRemote implements INameserver,Remote{
 
     @Override
     public void registerUser(String username, String address) throws RemoteException, AlreadyRegisteredException, InvalidDomainException {
+        System.out.println("Request: registerUser");
+        System.out.println("Username: "+username);
+        System.out.println("Address: "+address);
         /*try {
             ns.getShell().writeLine("start registering for user: "+username);
         } catch (IOException e) {
@@ -103,11 +106,13 @@ public class NameserverRemote implements INameserver,Remote{
 
             } else throw new InvalidDomainException("Invalid subdomain!");
         }
-        System.out.println("registeruser method end");
+        //System.out.println("registeruser method end");
     }
 
     @Override
     public INameserverForChatserver getNameserver(String zone) throws RemoteException {
+        System.out.println("Requested: getNameserver");
+        System.out.println("zone: "+zone);
         INameserverForChatserver result = null;
         if(subdomains.containsKey(zone)){
             result=subdomains.get(zone);
@@ -117,6 +122,8 @@ public class NameserverRemote implements INameserver,Remote{
 
     @Override
     public String lookup(String username) throws RemoteException {
+        System.out.println("Requested: lookup");
+        System.out.println("username: "+username);
         String result = null;
         if (users.containsKey(username)){
             result=users.get(username);
