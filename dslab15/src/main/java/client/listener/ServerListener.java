@@ -33,7 +33,6 @@ public class ServerListener implements Runnable {
 		try {
 
 			while(((message = new String(tcp.read(),"UTF-8")) != null)) {
-
 				if(message.startsWith("[message]")){
 
 					message = message.replace("[message]", "");

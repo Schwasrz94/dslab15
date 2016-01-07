@@ -137,7 +137,13 @@ public class Client implements IClientCli, Runnable {
 		serverListener.setWaitForResponse(true);
 		tcp.write("!logout".getBytes());
 		String response;
+		try {
+    			Thread.sleep(500);
+		} catch(InterruptedException ex) {
+    			//nothing
+		}
 		while((response = getSresp()) == null);
+		
 		if(response.equals("Successfully logged out.")){
 			if (tcp != null && tcp.isOpen())
 				tcp.close();
@@ -187,9 +193,13 @@ public class Client implements IClientCli, Runnable {
 		if(!loggedIn) return "You are not logged in";
 		serverListener.setWaitForResponse(true);
 		tcp.write(("!lookup-"+username).getBytes());
-
 		String response;
-		while((response = getSresp()) == null);
+		try {
+    			Thread.sleep(500);
+		} catch(InterruptedException ex) {
+    			//nothing
+		}
+		while((response = getSresp()) == null);	
 
 		if(response.contains(":")){
 
@@ -221,9 +231,14 @@ public class Client implements IClientCli, Runnable {
 
 		serverListener.setWaitForResponse(true);
 		tcp.write(("!lookup-"+username).getBytes());
-
 		String response;
+		try {
+    			Thread.sleep(500);
+		} catch(InterruptedException ex) {
+    			//nothing
+		}
 		while((response = getSresp()) == null);
+		
 		return response;
 	}
 
@@ -236,19 +251,22 @@ public class Client implements IClientCli, Runnable {
 
 		serverListener.setWaitForResponse(true);
 		tcp.write(("!register-"+privateAddress).getBytes());
-
 		String response;
+		try {
+    			Thread.sleep(500);
+		} catch(InterruptedException ex) {
+    			//nothing
+		}
 		while((response = getSresp()) == null);
-		sresp = null;
-
-
-		System.out.println("starting private connection");
-		if (privateServerSocket != null && !privateServerSocket.isClosed())
-			privateServerSocket.close();
-		privateServerSocket = new ServerSocket(Integer.parseInt(parts[1]));
-		PrivateServerListener psListener = new PrivateServerListener(privateServerSocket,shell,hmacKey);
-		pool.execute(psListener);
-
+		
+		if(response.equals("Successfully registered address for "+user+".")){
+			System.out.println("starting private connection");
+			if (privateServerSocket != null && !privateServerSocket.isClosed())
+				privateServerSocket.close();
+			privateServerSocket = new ServerSocket(Integer.parseInt(parts[1]));
+			PrivateServerListener psListener = new PrivateServerListener(privateServerSocket,shell,hmacKey);
+			pool.execute(psListener);
+		}
 		return response;
 	}
 

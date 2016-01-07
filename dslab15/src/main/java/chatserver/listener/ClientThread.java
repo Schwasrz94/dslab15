@@ -81,7 +81,6 @@ public class ClientThread implements Runnable{
 					send(new String(request,"UTF-8"));
 					break;
 				case "!register":
-					tcp.write(" ".getBytes());
 					tcp.write(register(parts).getBytes());
 					break;
 				case "!lookup":
@@ -248,14 +247,9 @@ public class ClientThread implements Runnable{
 	public String lookup(String[] arguments){
 		if(currentUser == null ) return "Not logged in.";
 		if(arguments.length < 2) return "Too few arguments.";
-		/*if(!userMap.containsKey(arguments[1])) return "User "+arguments[1]+" not found";
-		if(!userMap.get(arguments[1]).isOnline()) return "User "+arguments[1]+" not online";
-		if(userMap.get(arguments[1]).getAddr() == null) return "User "+arguments[1]+" not registered";*/
-
-
-
 		return reverseLookup(arguments[1]);
 	}
+	
 	private String reverseLookup(String currentUser) {
 		String result=null;
 		List<String> uSplit	= Arrays.asList(currentUser.split("\\."));
